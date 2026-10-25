@@ -1,3 +1,71 @@
+setTimeout(() => {
+    const message = document.createElement("div");
+
+    message.innerHTML = `
+        <div class="message-content">
+            اللهم صلِّ وسلم على نبينا محمد ﷺ ❤️
+            <button id="closeMessage">متابعة الامتحان</button>
+        </div>
+    `;
+
+    Object.assign(message.style, {
+        position: "fixed",
+        inset: "0",
+        background: "rgba(0, 0, 0, 0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: "0",
+        transition: "opacity 0.8s ease",
+        zIndex: "99999"
+    });
+
+    const style = document.createElement("style");
+    style.textContent = `
+        .message-content {
+            background: #222;
+            color: #f7df1e;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            font-family: Cairo, sans-serif;
+            box-shadow: 0 10px 40px rgba(0,0,0,.3);
+            transform: translateY(15px);
+            transition: transform .8s ease;
+        }
+
+        #closeMessage {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #f7df1e;
+            color: #222;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    `;
+
+    document.head.appendChild(style);
+    document.body.appendChild(message);
+
+    requestAnimationFrame(() => {
+        message.style.opacity = "1";
+        message.querySelector(".message-content").style.transform =
+            "translateY(0)";
+    });
+
+    document.getElementById("closeMessage").addEventListener("click", () => {
+        message.style.opacity = "0";
+
+        setTimeout(() => {
+            message.remove();
+            style.remove();
+        }, 800);
+    });
+}, 10000);
+
 let submit = document.getElementById("submit");
 let result = document.getElementById("result");
 
