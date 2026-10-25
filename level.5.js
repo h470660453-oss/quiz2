@@ -64,7 +64,7 @@ setTimeout(() => {
             style.remove();
         }, 800);
     });
-}, 10000);
+}, 9000);
 
 let submit = document.getElementById("submit");
 let result = document.getElementById("result");
